@@ -81,7 +81,7 @@ void add_student(int *Arr_index)
     fflush(stdin);
     scanString(school_arr[real_index].phone,maxPhone);
 
-    /*  printf("Name of student mother:");
+     printf("Name of student mother:");
       fflush(stdin);
       scanString(school_arr[real_index].mother.name,maxName);
 
@@ -118,7 +118,7 @@ void add_student(int *Arr_index)
       printf("Enter %d sibling age:",i+1);
       scanf("%d",&(school_arr[real_index].siblings[i].age));
 
-      }*/
+      }
 
 
     (*Arr_index)++;
@@ -164,12 +164,12 @@ void print_student(student_t *PointToStruct)
     printf("father Work        : %s\n",PointToStruct->father.work);
 
     int sib_num=PointToStruct->numberOfSiblings;
-    int i;
+    int i,k=13;
     for(i=0; i<sib_num; i++)
     {
-        cmdGoToXY(50,13);
+        cmdGoToXY(50,k++);
         printf("Sibling %d Name    : %s\n",i+1,PointToStruct->siblings->name);
-        cmdGoToXY(50,14);
+        cmdGoToXY(50,k++);
         printf("Sibling %d Age     : %d\n",i+1,PointToStruct->siblings->age);
     }
 
