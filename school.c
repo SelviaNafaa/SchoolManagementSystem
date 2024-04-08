@@ -51,7 +51,7 @@ void scanString(char*str,int maxSize)
         scanf("%c",str+i);
 
     }
-    str[i-1]=0;
+    *(str+i-1)=0;
     str[i]=0;
 
 }
@@ -81,7 +81,7 @@ void add_student(int *Arr_index)
     fflush(stdin);
     scanString(school_arr[real_index].phone,maxPhone);
 
-     printf("Name of student mother:");
+      printf("Name of student mother:");
       fflush(stdin);
       scanString(school_arr[real_index].mother.name,maxName);
 
@@ -104,7 +104,7 @@ void add_student(int *Arr_index)
       printf("Enter father work:");
       fflush(stdin);
       scanString(school_arr[real_index].father.work,maxWork);
-      printf("Enter number of sibling:");
+      printf("Enter number of siblings:");
       scanf("%d",&school_arr[real_index].numberOfSiblings);
       int sibNum=school_arr[real_index].numberOfSiblings;
       int i;
@@ -112,13 +112,14 @@ void add_student(int *Arr_index)
       for(i=0;i<sibNum;i++)
       {
 
-      printf("Enter %d sibling Name:",i+1);
+      printf("Enter sibling %d Name:",i+1);
       fflush(stdin);
       scanString(school_arr[real_index].siblings[i].name,maxName);
-      printf("Enter %d sibling age:",i+1);
+      printf("Enter sibling %d age:",i+1);
       scanf("%d",&(school_arr[real_index].siblings[i].age));
 
       }
+      printf("\n");
 
 
     (*Arr_index)++;
@@ -168,9 +169,9 @@ void print_student(student_t *PointToStruct)
     for(i=0; i<sib_num; i++)
     {
         cmdGoToXY(50,k++);
-        printf("Sibling %d Name    : %s\n",i+1,PointToStruct->siblings->name);
+        printf("Sibling %d Name     : %s\n",i+1,PointToStruct->siblings[i].name);
         cmdGoToXY(50,k++);
-        printf("Sibling %d Age     : %d\n",i+1,PointToStruct->siblings->age);
+        printf("Sibling %d Age      : %d\n",i+1,PointToStruct->siblings[i].age);
     }
 
 
@@ -407,7 +408,7 @@ void makingCall(char*str)
     volatile int j=0;
     cmdGoToXY(20,10);
     printf("Calling %s",str);
- while(j<5)
+ while(j<3)
  {
 
      printf(".");
@@ -447,11 +448,12 @@ int callPersonByPhoneNum(char *str,int who)
 
                 makingCall(str);
 
+                 return 1;
+
 
             }
 
 
-            return 1;
         }
 
         return 0;
@@ -503,8 +505,6 @@ int callPersonByName(char *str,int who)
             {
 
                 makingCall(str);
-
-
 
                 return 1;
             }
@@ -578,8 +578,8 @@ void printALLTogether(student_t *PointToStruct)
         int j;
         for (j = 0; j < sib_num; j++)
         {
-            printf("| Sibling %d Name         | %-24s|\n", i+1, PointToStruct[i].siblings[j].name);
-            printf("| Sibling %d Age          | %-24d|\n", i+1, PointToStruct[i].siblings[j].age);
+            printf("| Sibling %d Name          | %-24s|\n", j+1, PointToStruct[i].siblings[j].name);
+            printf("| Sibling %d Age           | %-24d|\n", j+1, PointToStruct[i].siblings[j].age);
         }
     }
     printf("+-------------------------+-------------------------+\n\n\n");
@@ -663,7 +663,7 @@ void Request2_Handling(void)
         else if(check==1)
         {
             cmdSetConsoleColour(TEXT_Green);
-            printf("Student Information Edited successfully");
+            printf("\n\n\n\n\n\nStudent Information Edited successfully");
             cmdResetConsoleColour();
 
         }
@@ -695,7 +695,7 @@ void Request2_Handling(void)
         else if(check==1)
         {
             cmdSetConsoleColour(TEXT_Green);
-            printf("Student Information Edited successfully");
+            printf("\n\n\n\n\n\Student Information Edited successfully");
             cmdResetConsoleColour();
 
 
@@ -902,7 +902,7 @@ void Request4_Handling(void)
         if(check==0)
         {
             cmdSetConsoleColour(TEXT_Green);
-            printf("Note: {%s} Number Not Exist In Your DataBase\n",Phone);
+            printf("Note: {%s} Number Not Exist In Your Database\n",Phone);
             cmdResetConsoleColour();
             makingCall(Phone);
         }
